@@ -5,14 +5,22 @@ import { connect } from 'react-redux';
 import { BleManager } from 'react-native-ble-plx';
 import ListItem from './ListItem';
 import { Button, CardSection, Card } from './common';
-import { bleScanStart } from '../actions';
+import { bleScanInfo, bleScanStart, bleScanStop } from '../actions';
 
 class BleList extends Component {
   // Creating BLE Manager
   componentWillMount() {
     this.manager = new BleManager();
 
-    //this.crearDataSource(this.props);
+    this.crearDataSource(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // nextProps are the next set of props that this component
+    // will be render with
+    // this.props is still the old set of props
+
+    this.crearDataSource(nextProps);
   }
 
   componentWillUnmount() {
@@ -20,34 +28,41 @@ class BleList extends Component {
     delete this.manager;
   }
 
-  onStartScanPress() {
-    this.scanAndConnect();
-  }
-
-  scanAndConnect() {
-    this.manager.startDeviceScan(null, null, (error, device) => {
-      this.props.bleScanStart("Scanning")
-
-      if (error) {
-        this.props.bleScanStart(error.message)
-        return
-      }
-    });
-  }
-
-  /*
-  crearDataSource({ info }) {
+  crearDataSource({ bleItems }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(info);
+    this.dataSource = ds.cloneWithRows(bleItems);
   }
 
-  renderRow(info) {
-    return <ListItem ble={info} />;
+  onStartScanPress() {
+    this.scanAndConnect();
   }
-  */
+
+  onStopScanPress() {
+    this.manager.stopDeviceScan();
+    this.props.bleScanStop();
+    this.props.bleScanInfo("Stop Scan!");
+  }
+
+  scanAndConnect() {
+    this.manager.startDeviceScan(null, null, (error, device) => {
+      this.props.bleScanInfo("Scanning...")
+
+      if (error) {
+        this.props.bleScanInfo(error.message)
+        return
+      }
+
+      this.props.bleScanStart(this.props.bleItems, device);
+
+    });
+  }
+
+  renderRow(bleItem) {
+    return <ListItem bleItem={bleItem} />;
+  }
 
   render() {
     return (
@@ -60,10 +75,16 @@ class BleList extends Component {
             Start
           </Button>
 
-          <Button>
+          <Button onPress={this.onStopScanPress.bind(this)}>
             Stop
           </Button>
         </CardSection>
+
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
 
       </View>
     );
@@ -88,9 +109,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const { id, name, info } = state.bleItems
+  const bleItems = _.map(state.bleItems, (val, uid) => {
+    return { ...val, uid }; // { shift: 'Monday', name: 'Kaka', id: 'abcdefg'};
+  });
+  const info = state.bleState.info;
 
-  return { id, name, info }
+  return {bleItems, info};
 }
 
-export default connect(mapStateToProps, { bleScanStart })(BleList);
+export default connect(mapStateToProps, { bleScanInfo, bleScanStart, bleScanStop })(BleList);

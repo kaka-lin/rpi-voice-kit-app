@@ -1,16 +1,17 @@
-import { BLE_SCAN_START } from '../actions/types';
+import {
+  BLE_SCAN_START,
+  BLE_SCAN_STOP
+} from '../actions/types';
 
-const INITIAL_STATE = {
-  id: '',
-  name: '',
-  info: 'Stop Scan!'
-};
+var INITIAL_DEVICE = [];
 
-export default (state = INITIAL_STATE, action) => {
+export default (device = INITIAL_DEVICE, action) => {
   switch(action.type) {
     case BLE_SCAN_START:
-      return { ...state, info: action.payload };
+      return action.payload;
+    case BLE_SCAN_STOP:
+      return action.payload;
     default:
-      return state
+      return device;
   }
 }

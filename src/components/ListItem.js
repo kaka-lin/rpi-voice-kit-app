@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 //import { Actions } from 'react-native-router-flux';
-import { CardSection } from './common';
+import { CardSection, Card } from './common';
 
 export default class ListItem extends Component {
   /*
@@ -11,25 +11,31 @@ export default class ListItem extends Component {
   */
 
   render() {
-    const { name } = this.props.ble;
+    const { id, name } = this.props.bleItem;
 
     return (
       <TouchableWithoutFeedback>
-        <View>
+        <Card>
           <CardSection>
-            <Text style={styles.titleStyle}>
-              {name}
+            <Text style={styles.textStyle}>
+              id: {id}
             </Text>
           </CardSection>
-        </View>
+
+          <CardSection>
+            <Text style={styles.textStyle}>
+              name: {name}
+            </Text>
+          </CardSection>
+        </Card>
       </TouchableWithoutFeedback>
     );
   }
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
+  textStyle: {
+    fontSize: 13,
     paddingLeft: 15
   }
 };
