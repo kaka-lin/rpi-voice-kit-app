@@ -3,6 +3,6 @@ import BleReducer from './BleReducer';
 import BleStateReducer from './BleStateReducer';
 
 export default combineReducers({
-  bleItems: BleReducer,
+  bleDevices: BleReducer,
   bleState: BleStateReducer
 });

@@ -3,9 +3,8 @@ import { AppRegistry, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { name as appName } from '../app.json';
-import { Header } from './components/common';
 import reducers from './reducers';
-import BleList from './components/BleList';
+import Router from './Router';
 
 class App extends Component {
   render() {
@@ -13,10 +12,7 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-        <View style={{ flex: 1}}>
-          <Header headerText={'RPi BLE'} />
-          <BleList />
-        </View>
+        <Router />
       </Provider>
     );
   }

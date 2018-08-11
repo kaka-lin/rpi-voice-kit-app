@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
-//import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import { CardSection, Card } from './common';
 
 export default class ListItem extends Component {
-  /*
   onRowPress() {
-    Actions.employeeEdit({ employee: this.props.employee });
+    Actions.bleModule({ bleDevice: this.props.bleDevice });
   }
-  */
 
   render() {
-    const { id, name } = this.props.bleItem;
+    const { id, name } = this.props.bleDevice;
 
     return (
-      <TouchableWithoutFeedback>
-        <Card>
+      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
+        <View>
           <CardSection>
             <Text style={styles.textStyle}>
               id: {id}
@@ -27,7 +25,7 @@ export default class ListItem extends Component {
               name: {name}
             </Text>
           </CardSection>
-        </Card>
+        </View>
       </TouchableWithoutFeedback>
     );
   }
