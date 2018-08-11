@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { ListView, Text, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { BleManager } from 'react-native-ble-plx';
 import ListItem from './ListItem';
-import { Button, CardSection, Card } from './common';
+import { Button, CardSection } from './common';
 import { bleScanInfo, bleScanStart, bleScanStop } from '../actions';
 
 class BleList extends Component {
@@ -28,16 +28,16 @@ class BleList extends Component {
     delete this.manager;
   }
 
-  crearDataSource({ bleItems }) {
+  crearDataSource({ bleDevices }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(bleItems);
+    this.dataSource = ds.cloneWithRows(bleDevices);
   }
 
   onStartScanPress() {
-    this.scanAndConnect();
+    this.scan();
   }
 
   onStopScanPress() {
@@ -46,7 +46,7 @@ class BleList extends Component {
     this.props.bleScanInfo("Stop Scan!");
   }
 
-  scanAndConnect() {
+  scan() {
     this.manager.startDeviceScan(null, null, (error, device) => {
       this.props.bleScanInfo("Scanning...")
 
@@ -55,13 +55,12 @@ class BleList extends Component {
         return
       }
 
-      this.props.bleScanStart(this.props.bleItems, device);
-
+      this.props.bleScanStart(device);
     });
   }
 
-  renderRow(bleItem) {
-    return <ListItem bleItem={bleItem} />;
+  renderRow(bleDevice) {
+    return <ListItem bleDevice={bleDevice} />;
   }
 
   render() {
@@ -100,21 +99,27 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     textAlign: 'center',
+    backgroundColor: '#fff'
   },
   infoText: {
     fontSize: 16,
     color: 'blue',
     textAlign: 'center',
+    backgroundColor: '#fff'
   },
 });
 
 const mapStateToProps = (state) => {
-  const bleItems = _.map(state.bleItems, (val, uid) => {
+  /*
+  const bleDevices = _.map(state.bleDevices, (val, uid) => {
     return { ...val, uid }; // { shift: 'Monday', name: 'Kaka', id: 'abcdefg'};
   });
+  */
+
+  var bleDevices = Object.assign({}, state.bleDevices);
   const info = state.bleState.info;
 
-  return {bleItems, info};
+  return { bleDevices, info };
 }
 
 export default connect(mapStateToProps, { bleScanInfo, bleScanStart, bleScanStop })(BleList);

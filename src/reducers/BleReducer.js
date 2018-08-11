@@ -3,7 +3,7 @@ import {
   BLE_SCAN_STOP
 } from '../actions/types';
 
-var INITIAL_DEVICE = [];
+const INITIAL_DEVICE = [];
 
 export default (device = INITIAL_DEVICE, action) => {
   switch(action.type) {

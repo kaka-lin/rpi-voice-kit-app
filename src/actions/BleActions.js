@@ -4,6 +4,8 @@ import {
   BLE_SCAN_STOP
 } from './types';
 
+const devices = []
+
 export const bleScanInfo = (text) => {
   return {
     type: BLE_SCAN_INFO,
@@ -11,22 +13,22 @@ export const bleScanInfo = (text) => {
   }
 }
 
-export const bleScanStart = (items, device) => {
+export const bleScanStart = (device) => {
   var isSame = false;
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].id == device.id) {
+  for (let i = 0; i < devices.length; i++) {
+    if (devices[i].id == device.id) {
       isSame = true;
       break;
     }
   }
 
   if (!isSame) {
-    items.push(device);
+    devices.push(device);
   }
 
   return {
     type: BLE_SCAN_START,
-    payload: items
+    payload: devices
   }
 }
 
