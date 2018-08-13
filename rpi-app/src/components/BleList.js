@@ -65,9 +65,9 @@ class BleList extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
-        <Text style = {styles.text}>Ble Scanner</Text>
-        <Text style = {styles.infoText}>{this.props.info}</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Ble Scanner</Text>
+        <Text style={styles.infoText}>{this.props.info}</Text>
 
         <CardSection>
           <Button onPress={this.onStartScanPress.bind(this)}>
