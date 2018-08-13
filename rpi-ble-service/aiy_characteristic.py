@@ -18,7 +18,7 @@ class AiyCharacteristic(Characteristic):
                 ),
             ],
             'value': None
-        })touch
+        })
 
     def onReadRequest(self, offset, callback):
         try:
