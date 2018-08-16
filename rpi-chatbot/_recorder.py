@@ -1,10 +1,9 @@
-import subprocess as sp
 import os
-import logging
 import asyncio
-from ._player import simple_player
+import subprocess as sp
+from _player import simple_player
+from _logging import logger
 
-logger = logging.getLogger('ekko')
 PJ = os.path.join
 this_dir = os.path.dirname(os.path.abspath(__file__))
 

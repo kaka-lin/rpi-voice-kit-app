@@ -1,8 +1,5 @@
 import subprocess as sp
-import _logging as logging
-# import asyncio
-
-logger = logging.getLogger('ekko')
+from _logging import logger
 
 class _Player:
     cmd_for_mp3 = 'mpg123-pulse -q -'

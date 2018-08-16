@@ -1,19 +1,31 @@
 # Human Intelligence
 from serach_text import *
 
-class FoodClass:
-    FOOD_BUBBLE_TEA = '珍珠奶茶'
+FoodBubbleTea = [
+    '珍珠奶茶'
+]
 
-class BrandClass:
-    BRAND_1 = '50嵐'
-
+BrandClass = [
+    '五十嵐',
+    'Coco', '口口', '扣扣'
+    '一芳', '一方'
+    '珍煮丹', '真主單'
+    '老虎堂', '老虎糖'
+]
 
 def chatbot(sentence):
-    if FoodClass.FOOD_BUBBLE_TEA in sentence:
-        return search_text(FoodClass.FOOD_BUBBLE_TEA)
+    for food in FoodBubbleTea:
+        if food in sentence:
+            return search_text(food)
 
-    if BrandClass.BRAND_1 in sentence:
-        return search_text(BrandClass.BRAND_1)
+    for brand in BrandClass:
+        if brand in sentence:
+            return search_text(brand)
+
+    if "貝貝" in sentence or "寶貝" in sentence:
+        return "情人節快樂"
+
+    return "蛤，我不知道你在說什麼"
 
 if __name__ == "__main__":
     question = '我超愛珍珠奶茶，請問有推薦的嗎'
@@ -21,7 +33,7 @@ if __name__ == "__main__":
     print(chatbot(question))
     print()
 
-    question = '我超愛50嵐'
+    question = '我超愛五十嵐'
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
     print()

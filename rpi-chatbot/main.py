@@ -1,17 +1,17 @@
+import os
+import time
 import asyncio
 import tempfile
 import websockets
-import time
-import os
 import ujson as json
 import hashlib
 import aiy.audio  # noqa # pylint: disable=import-error
 import aiy.voicehat  # noqa # pylint: disable=import-error
 from gtts import gTTS
-from ._player import simple_player
-from ._recorder import simple_recorder
-from .logging import logger
-from .exceptions import WebSocketAuthenticationError
+from _player import simple_player
+from _recorder import simple_recorder
+from _logging import logger
+from exceptions import WebSocketAuthenticationError
 from fake_chatbot import chatbot
 
 PJ = os.path.join
