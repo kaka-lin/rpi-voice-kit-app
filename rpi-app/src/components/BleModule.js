@@ -110,11 +110,11 @@ class BleModule extends Component {
     console.log('nofityCharacteristicUUID',this.nofityCharacteristicUUID);
   }
 
-  write() {
-    let hexValue = new Buffer([1]).toString('base64');
+  write(text) {
+    let hexValue = new Buffer(text).toString('base64');
     let transactionId = 'writeWithoutResponse';
 
-    console.log("test1: ", hexValue, typeof(hexValue));
+    console.log("Write: ", hexValue);
 
     const device = this.props.bleDevice;
     device.writeCharacteristicWithResponseForService(this.writeWithResponseServiceUUID[0],
@@ -129,35 +129,48 @@ class BleModule extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Card>
         <CardSection>
-          <Text style={{fontSize: 20}}>Voice Kit</Text>
           <Image
-            style={{height: 100, width: 100}}
+            style={styles.imageStyle}
             source={require('../imgs/voice-kit.png')}
           />
         </CardSection>
 
         <CardSection>
-          <Button onPress={this.write.bind(this)}>
-            Ble test
+          <Button onPress={() => this.write("Voice Kit Led test")}>
+            Led test
           </Button>
 
-          <Button>
-            Voice Kit
+          <Button onPress={() => this.write("Voice Kit Audio test")}>
+            Audio test
           </Button>
         </CardSection>
-      </View>
+
+        <CardSection>
+          <Button onPress={() => this.write("ekko start")}>
+            Action
+          </Button>
+
+          <Button onPress={() => this.write("ekko stop")}>
+            Stop
+          </Button>
+        </CardSection>
+      </Card>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     margin: 10,
   },
+  imageStyle: {
+    height: 400,
+    flex: 1,
+    width: 200
+  }
 });
 
 export default BleModule;
