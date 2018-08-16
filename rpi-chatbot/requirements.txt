@@ -1,0 +1,6 @@
+RPi.GPIO
+websockets
+ujson
+numpy==1.15.0
+gtts
+pandas==0.20.3
