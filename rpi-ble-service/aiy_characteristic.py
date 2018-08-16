@@ -31,12 +31,23 @@ class AiyCharacteristic(Characteristic):
         callback(Characteristic.RESULT_SUCCESS, array.array('B', [10]))
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
-        data = int.from_bytes(data, 'little')
+        #data = int.from_bytes(data, 'little')
+        data = data.decode('utf-8')
+        print("Receive: {}".format(data))
         led = aiy.voicehat.get_led()
 
-        if data == 1:
+        if data == "Voice Kit Led test":
             led.set_state(led.BLINK_3)
             time.sleep(2)
             led.set_state(led.OFF)
+        elif data == "Voice Kit Audio test":
+            pass
+        elif data == "ekko start":
+            cmd = 'python3 ~/rpi-app/rpi-chatbot/fake_chatbot.py'
+            p = subprocess.Popen(cmd.split())
+        elif data == "ekko stop":
+            pass
+        else:
+            pass
 
         callback(Characteristic.RESULT_SUCCESS)
