@@ -44,8 +44,8 @@ class AiyCharacteristic(Characteristic):
             cmd = 'gnome-terminal -e "python3 /home/pi/AIY-projects-python/checkpoints/check_audio.py"'
             p = subprocess.Popen(cmd, shell=True)
         elif data == "ekko start":
-            cmd = 'gnome-terminal -e "python3 ~/rpi-app/rpi-chatbot/main.py"'
-            p = subprocess.Popen(cmd, shell=True)
+            cmd = "python3 /home/pi/rpi-app/rpi-chatbot-2/main.py"
+            p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
         elif data == "ekko stop":
             pass
         else:

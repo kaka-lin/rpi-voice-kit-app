@@ -5,3 +5,5 @@ __pycache__
 
 # vscode
 .vscode
+
+rpi-ble-service/answer.mp3
