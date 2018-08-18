@@ -10,7 +10,7 @@ class AiyCharacteristic(Characteristic):
     def __init__(self):
         Characteristic.__init__(self, {
             'uuid': '11111111111111111111111111111001',
-            'properties': ['read', 'write'],
+            'properties': ['read', 'writeWithoutResponse'],
             'descriptors': [
                 Descriptor(
                     uuid = '2901',
@@ -41,10 +41,11 @@ class AiyCharacteristic(Characteristic):
             time.sleep(2)
             led.set_state(led.OFF)
         elif data == "Voice Kit Audio test":
-            pass
+            cmd = 'gnome-terminal -e "python3 /home/pi/AIY-projects-python/checkpoints/check_audio.py"'
+            p = subprocess.Popen(cmd, shell=True)
         elif data == "ekko start":
-            cmd = 'python3 ~/rpi-app/rpi-chatbot/fake_chatbot.py'
-            p = subprocess.Popen(cmd.split())
+            cmd = 'gnome-terminal -e "python3 ~/rpi-app/rpi-chatbot/main.py"'
+            p = subprocess.Popen(cmd, shell=True)
         elif data == "ekko stop":
             pass
         else:

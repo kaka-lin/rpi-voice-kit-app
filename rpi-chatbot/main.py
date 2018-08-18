@@ -17,8 +17,11 @@ from fake_chatbot import chatbot
 PJ = os.path.join
 this_dir = os.path.dirname(os.path.abspath(__file__))
 
-ws_endpoint = os.environ.get('WS_ENDPOINT')
-ws_token = os.environ.get('WS_TOKEN')
+#ws_endpoint = os.environ.get('WS_ENDPOINT')
+#ws_token = os.environ.get('WS_TOKEN')
+
+ws_endpoint = 'wss://ime.ailabs.tw/ime/ws/1/'
+ws_token = '17--F73RAWaOVOKWwWCA'
 
 led = aiy.voicehat.get_led()
 
