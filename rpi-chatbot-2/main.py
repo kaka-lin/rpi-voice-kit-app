@@ -29,6 +29,8 @@ if __name__ == "__main__":
         print("question: {}".format(question))
         answer = chatbot(question)
         print("answer: ", answer)
+        if answer == '':
+            answer = '蛤，請再說一次！'
         tts = gTTS(answer, lang='zh-tw')
         tts.save('answer.mp3')
         play_test('answer.mp3')
