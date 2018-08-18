@@ -45,7 +45,7 @@ class AiyCharacteristic(Characteristic):
             p = subprocess.Popen(cmd, shell=True)
         elif data == "ekko start":
             cmd = "python3 /home/pi/rpi-app/rpi-chatbot-2/main.py"
-            p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+            p = subprocess.Popen(cmd, shell=True)
         elif data == "ekko stop":
             pass
         else:

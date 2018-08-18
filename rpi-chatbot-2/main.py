@@ -2,13 +2,14 @@ import aiy.audio
 from gtts import gTTS
 import speech_recognition as sr
 import pygame
+from fake_chatbot import chatbot
 
 def play_test(fd):
     pygame.init()
     #pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.load(fd)
     pygame.mixer.music.play()
-    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.set_volume(0.3)
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
@@ -24,9 +25,11 @@ if __name__ == "__main__":
         # for testing purposes, we're just using the default API key
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
-        text = r.recognize_google(audio, language="zh-TW")
-        print(text)
-        tts = gTTS(text, lang='zh-tw')
+        question = r.recognize_google(audio, language="zh-TW")
+        print("question: {}".format(question))
+        answer = chatbot(question)
+        print("answer: ", answer)
+        tts = gTTS(answer, lang='zh-tw')
         tts.save('answer.mp3')
         play_test('answer.mp3')
     except sr.UnknownValueError:
