@@ -117,8 +117,8 @@ class BleModule extends Component {
     console.log("Write: ", hexValue);
 
     const device = this.props.bleDevice;
-    device.writeCharacteristicWithResponseForService(this.writeWithResponseServiceUUID[0],
-      this.writeWithResponseCharacteristicUUID[0], hexValue, transactionId)
+    device.writeCharacteristicWithoutResponseForService(this.writeWithoutResponseServiceUUID[0],
+      this.writeWithoutResponseCharacteristicUUID[0], hexValue, transactionId)
       .then((characteristic) => {
         console.log('Write Success', hexValue);
       }, (error) => {
