@@ -9,7 +9,7 @@ def play_mp3(fd):
     #pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.load(fd)
     pygame.mixer.music.play()
-    pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.set_volume(1.0)
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 

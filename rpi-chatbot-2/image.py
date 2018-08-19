@@ -106,7 +106,11 @@ def main_img_path(path):
         print(count)
         print(brand[count.index(max(count))])
         brand = brand_return[count.index(max(count))]
-        print(brand)
+        brand = "這是{}".format(brand)
+        tts = gTTS(brand, lang='zh-tw')
+        tts.save('img_brand.mp3')
+        play_mp3('img_brand.mp3')
+
         answer = fake_chatbot.chatbot(brand)
         print(answer)
         tts = gTTS(answer, lang='zh-tw')

@@ -35,7 +35,7 @@ def chatbot(sentence):
             return search_text(night_markets)
     if '夜市' in sentence:
         return search_text('夜市')
-        
+
     for taipei_scene in TaipeiScenes:
         if taipei_scene in sentence:
             return search_text(taipei_scene)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
     print()
-    
+
     question = '西門町有什麼好玩好吃的'
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
