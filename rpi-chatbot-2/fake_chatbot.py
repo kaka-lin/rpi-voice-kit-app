@@ -16,6 +16,12 @@ NightMarkets = [
     '寧夏夜市'
 ]
 
+TaipeiScenes = [
+    '台北101',
+    '中正紀念堂',
+    '士林官邸'
+]
+
 def chatbot(sentence):
     for bubble_tea in BubbleTeas:
         if bubble_tea in sentence:
@@ -28,6 +34,12 @@ def chatbot(sentence):
             return search_text(night_markets)
     if '夜市' in sentence:
         return search_text('夜市')
+        
+    for taipei_scene in TaipeiScenes:
+        if taipei_scene in sentence:
+            return search_text(taipei_scene)
+    if '台北' in sentence:
+        return search_text('台北')
 
     return "蛤，我不知道你在說什麼"
 
@@ -48,6 +60,16 @@ if __name__ == "__main__":
     print()
 
     question = '士林夜市，請推薦'
+    print('Qusetion: {}'.format(question))
+    print(chatbot(question))
+    print()
+
+    question = '台北有什麼好玩的'
+    print('Qusetion: {}'.format(question))
+    print(chatbot(question))
+    print()
+    
+    question = '士林有什麼好吃的'
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
     print()
