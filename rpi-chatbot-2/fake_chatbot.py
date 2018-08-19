@@ -70,7 +70,7 @@ if __name__ == "__main__":
     print(chatbot(question))
     print()
     
-    question = '西門町有什麼好吃的'
+    question = '西門町有什麼好玩好吃的'
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
     print()
