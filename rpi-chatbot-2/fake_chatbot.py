@@ -19,7 +19,8 @@ NightMarkets = [
 TaipeiScenes = [
     '台北101',
     '中正紀念堂',
-    '士林官邸'
+    '西門町',
+    '九份'
 ]
 
 def chatbot(sentence):
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     print(chatbot(question))
     print()
     
-    question = '士林有什麼好吃的'
+    question = '西門町有什麼好吃的'
     print('Qusetion: {}'.format(question))
     print(chatbot(question))
     print()
