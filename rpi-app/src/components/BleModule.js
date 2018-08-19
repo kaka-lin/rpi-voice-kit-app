@@ -138,22 +138,12 @@ class BleModule extends Component {
         </CardSection>
 
         <CardSection>
-          <Button onPress={() => this.write("Voice Kit Led test")}>
-            Led test
+          <Button onPress={() => this.write("speech")}>
+            Speech
           </Button>
 
-          <Button onPress={() => this.write("Voice Kit Audio test")}>
-            Audio test
-          </Button>
-        </CardSection>
-
-        <CardSection>
-          <Button onPress={() => this.write("ekko start")}>
-            Action
-          </Button>
-
-          <Button onPress={() => this.write("ekko stop")}>
-            Stop
+          <Button onPress={() => this.write("image")}>
+            Image
           </Button>
         </CardSection>
       </Card>
