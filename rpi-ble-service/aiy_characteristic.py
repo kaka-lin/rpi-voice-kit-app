@@ -47,7 +47,8 @@ class AiyCharacteristic(Characteristic):
             cmd = "python3 /home/pi/rpi-app/rpi-chatbot-2/main.py"
             p = subprocess.Popen(cmd, shell=True)
         elif data == "image":
-            pass
+            cmd = "python3 /home/pi/rpi-app/rpi-chatbot-2/image.py /home/pi/rpi-app/rpi-chatbot-2/data/image.jpg"
+            p = subprocess.Popen(cmd, shell=True)
         else:
             pass
 
