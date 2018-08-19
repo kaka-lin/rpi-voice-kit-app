@@ -41,7 +41,7 @@ def chatbot(sentence):
     if '台北' in sentence:
         return search_text('台北')
 
-    return "蛤，我不知道你在說什麼"
+    return "蛤，我不知道你在說什麼，請再說一次"
 
 if __name__ == "__main__":
     question = '我超愛珍珠奶茶，請問有推薦的嗎'

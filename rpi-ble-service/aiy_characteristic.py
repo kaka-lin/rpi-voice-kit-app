@@ -43,10 +43,10 @@ class AiyCharacteristic(Characteristic):
         elif data == "Voice Kit Audio test":
             cmd = 'gnome-terminal -e "python3 /home/pi/AIY-projects-python/checkpoints/check_audio.py"'
             p = subprocess.Popen(cmd, shell=True)
-        elif data == "ekko start":
+        elif data == "speech":
             cmd = "python3 /home/pi/rpi-app/rpi-chatbot-2/main.py"
             p = subprocess.Popen(cmd, shell=True)
-        elif data == "ekko stop":
+        elif data == "image":
             pass
         else:
             pass
